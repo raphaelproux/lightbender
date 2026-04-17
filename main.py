@@ -100,7 +100,7 @@ def _(
 @app.cell
 def _(intersections, mo, nb_rays_slider, plt, point_source_pos):
     for intersection in intersections:
-    
+
         plt.plot([point_source_pos[0], intersection[0]], [point_source_pos[1], intersection[1]], 'r')  # Mark intersection points
     plt.gca().set_aspect('equal', adjustable='box')
     ax2 = mo.ui.matplotlib(plt.gca())
@@ -110,10 +110,12 @@ def _(intersections, mo, nb_rays_slider, plt, point_source_pos):
 
 @app.cell
 def _(mo, np):
-    diameter_slider = mo.ui.slider(label='Diameter', start=0.1, stop=10.0, step=0.1, value=5.0, debounce=False)
-    radius_of_curvature_slider = mo.ui.slider(label='Radius of Curvature', steps=list(np.linspace(1.0, 20.0, 191)) + [1e10], value=5.0, debounce=False)
-    angle_slider = mo.ui.slider(label='Angle', steps=list(np.linspace(-50, 50.0, 101)), value=0.0, debounce=False)
-    nb_rays_plane_wave_slider = mo.ui.slider(label='Number of Rays', start=1, stop=100, step=1, value=30, debounce=False)
+    _diameters = list(np.linspace(0.1, 10.0, num=21))
+    _radius_of_curvatures = list(np.linspace(1.0, 20.0, 21)) + [1e10]
+    diameter_slider = mo.ui.slider(label='Diameter', steps=_diameters, value=_diameters[10], debounce=False)
+    radius_of_curvature_slider = mo.ui.slider(label='Radius of Curvature', steps=_radius_of_curvatures, value=_radius_of_curvatures[10], debounce=False)
+    angle_slider = mo.ui.slider(label='Angle', steps=list(np.linspace(-50, 50.0, 51)), value=0.0, debounce=False)
+    nb_rays_plane_wave_slider = mo.ui.slider(label='Number of Rays', start=2, stop=100, step=2, value=30, debounce=False)
     return (
         angle_slider,
         diameter_slider,
@@ -154,7 +156,6 @@ def _(
         if _final_pos is None:
             continue
         rays_positions.append(np.array([_start_ray[0:2], _ray_1[0:2], _ray_2[0:2], _final_pos]))
-
     return plane, rays_positions, sphere_arc
 
 

@@ -1,3 +1,7 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
 [project]
 name = "lightbender"
 version = "0.1.0"
@@ -8,3 +12,7 @@ dependencies = [
     "marimo>=0.23.1",
     "matplotlib>=3.10.8",
 ]
+
+[tool.maturin]
+manifest-path = "raytracer/Cargo.toml"
+module-name = "_raytracer_rs"
