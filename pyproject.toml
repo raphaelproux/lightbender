@@ -9,10 +9,19 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "marimo>=0.23.1",
+    "marimo>=0.23.2",
     "matplotlib>=3.10.8",
+    "maturin>=1.13.1",
+    "panel>=1.8.10",
+    "plotly>=6.7.0",
+    "streamlit>=1.56.0",
 ]
 
 [tool.maturin]
 manifest-path = "raytracer/Cargo.toml"
 module-name = "_raytracer_rs"
+
+[dependency-groups]
+dev = [
+    "watchfiles>=1.1.1",
+]
