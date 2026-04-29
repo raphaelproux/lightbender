@@ -509,7 +509,7 @@ section4 = pn.Column(
         pn.Column(
             diameter_point_source_slider,
             roc_point_source_slider,
-            thickness_point_sourceslider,
+            thickness_point_source_slider,
             nb_rays_pw_point_source_slider,
             angle_point_source_slider,
             width=250,

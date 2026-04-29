@@ -1,12 +1,12 @@
 [package]
+edition = "2021"
 name = "raytracer"
 version = "0.1.0"
-edition = "2021"
 
 [lib]
-name = "_raytracer_rs"
 crate-type = ["cdylib"]
+name = "_raytracer_rs"
 
 [dependencies]
-pyo3 = { version = "0.24", features = ["extension-module"] }
 numpy = "0.24"
+pyo3 = {version = "0.24", features = ["extension-module"]}
