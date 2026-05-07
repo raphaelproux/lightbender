@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.23.4"
-app = marimo.App(width="full")
+app = marimo.App(width="full", layout_file="layouts/intro.slides.json")
 
 
 @app.cell(hide_code=True)
@@ -125,11 +125,9 @@ def _():
     return PLOTLY_LAYOUT, PLOTLY_TEMPLATE
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""
-    ## Image from a point source
-    """)
+    mo.vstack([mo.md("## Image from a point source"), mo.image(src=r"assets/spotlight-beam-cutting-through-fog-dark-floor_1093951-27173.avif", width=500)], justify="start", gap=1)
     return
 
 
@@ -150,13 +148,6 @@ def _(mo, np):
         radius_of_curvature_slider,
         thickness_slider,
     )
-
-
-@app.cell
-def _(mo):
-    _md = """ """
-    mo.hstack([mo.image(src=r"assets/spotlight-beam-cutting-through-fog-dark-floor_1093951-27173.avif", width=500), mo.md(_md)], justify="start", align="center", gap=1)
-    return
 
 
 @app.cell
@@ -273,17 +264,9 @@ def _(
     return
 
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## Refraction
-    """)
-    return
-
-
 @app.cell
 def _(mo):
-    mo.image(src=r"assets/Refraction_photo.png", width=500)
+    mo.vstack([mo.md("## Refraction"), mo.image(src=r"assets/Refraction_photo.png", width=500)], justify="start", gap=1)
     return
 
 

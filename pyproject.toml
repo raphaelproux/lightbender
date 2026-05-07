@@ -7,6 +7,7 @@ dependencies = [
   "marimo>=0.23.3",
   "matplotlib>=3.10.8",
   "maturin>=1.13.1",
+  "pandas>=3.0.2",
   "plotly>=6.7.0",
   "scipy>=1.17.1",
   "zernike>=0.0.33",
@@ -25,3 +26,5 @@ module-name = "_raytracer_rs"
 dev = [
   "watchfiles>=1.1.1",
 ]
+[tool.marimo.runtime]
+output_max_bytes = 10_000_000

@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.3"
+__generated_with = "0.23.4"
 app = marimo.App(width="full")
 
 
@@ -120,6 +120,35 @@ def _(plt, x, xlims, y_asphere, y_sphere, ylims):
     )
     # plt.grid()
     plt.show()
+    return
+
+
+@app.cell
+def _(plt, x, xlims, y_asphere, y_sphere):
+    plt.figure(figsize=(6, 4))
+    plt.plot(x, y_sphere + y_asphere, "--C1")
+    plt.plot(x, y_sphere + y_asphere + 0.015*x**2-0.005*x**4, "-C1")
+    plt.xlim(*xlims)
+    plt.ylim(-0.02, 0.04)
+    plt.axhline(y=0, color='0.6', linestyle='-', linewidth=0.5)  # Horizontal line at y=0
+    plt.axvline(x=0, color='0.6', linestyle='-', linewidth=0.5)  # Vertical line at x=0
+    plt.tick_params(
+        axis='both',       # Apply to both x and y axes
+        which='both',      # Major and minor ticks
+        bottom=False,      # Remove ticks on the bottom
+        top=False,         # Remove ticks on the top
+        left=False,        # Remove ticks on the left
+        right=False,       # Remove ticks on the right
+        labelbottom=False, # Remove x-axis labels
+        labelleft=False    # Remove y-axis labels
+    )
+    # plt.grid()
+    plt.show()
+    return
+
+
+@app.cell
+def _():
     return
 
 
