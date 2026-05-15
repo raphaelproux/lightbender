@@ -1,10 +1,7 @@
 import marimo
 
 __generated_with = "0.23.4"
-app = marimo.App(
-    width="medium",
-    layout_file="layouts/surface_errors.slides.json",
-)
+app = marimo.App(width="medium")
 
 
 @app.cell(hide_code=True)
@@ -284,73 +281,7 @@ def _(
 
 
 @app.cell
-def _(cart, go, mo, np, xv, yv):
-    def plot_surface(theta, ast_amp, power_amp, rsi_amp):
-        _c = np.zeros(cart.nk)
-        _theta = 2 * np.radians(theta)
-        _amp = ast_amp
-        _c[3] = power_amp + 3 / 4 * np.sqrt(5.0 / 6) * rsi_amp
-        _c[4] = _amp * (np.cos(_theta) - np.sin(_theta))
-        _c[5] = _amp * (np.sin(_theta) + np.cos(_theta))
-        _c[10] = rsi_amp
-
-        _Phi = cart.eval_grid(_c, matrix=True) + np.sqrt(3) * _c[3] - np.sqrt(5) * _c[10]
-        _p = go.Figure()
-        _p.add_trace(
-            go.Surface(
-                x=xv,
-                y=yv,
-                z=_Phi,
-                contours_z=dict(
-                    show=True,
-                    # usecolormap=True,
-                    highlightcolor="limegreen",
-                    # project_z=True,
-                    start=-1.5,
-                    end=1.5,
-                    size=0.15,
-                    color="white"
-                ),
-                showscale=False,
-                cmin=-1.5,
-                cmax=1.5,
-            )
-        )
-        _p.update_layout(
-            width=600,  # Set width (in pixels)
-            height=600,  # Set height (in pixels)
-            margin=dict(l=0, r=0, b=0, t=0),  # Remove margins
-            scene=dict(
-                domain=dict(x=[0, 1], y=[0, 1]),  # Make the 3D scene fill the entire figure
-                xaxis=dict(
-                    nticks=4,
-                    range=[-1.0, 1.0],
-                ),
-                yaxis=dict(
-                    nticks=4,
-                    range=[-1.0, 1.0],
-                ),
-                zaxis=dict(
-                    nticks=4,
-                    range=[-2.5, 2.5],
-                ),
-            ),
-        )
-        _p.update_scenes(
-            camera=dict(
-                eye=dict(x=1.5, y=1.5, z=0.8),  # Camera position (higher = farther away)
-                up=dict(x=0, y=0, z=1),  # "Up" direction (default: z-axis)
-                center=dict(x=0, y=0, z=0),  # Point the camera is looking at
-            ),
-            aspectratio={"x": 1, "y": 1, "z": 0.5},
-            camera_projection_type="orthographic",
-        )
-        _plot = mo.ui.plotly(_p)
-        # plt.imshow(_Phi, origin='lower', extent=(-1, 1, -1, 1))
-        # print(np.nanmax(_Phi))
-
-        return _plot
-
+def _():
     return
 
 

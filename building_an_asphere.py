@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.4"
+__generated_with = "0.23.3"
 app = marimo.App(width="full")
 
 
@@ -21,9 +21,9 @@ def _():
 
 @app.cell
 def _(np):
-    R = 10
+    R = 1.2
     k = 0
-    asph_coeffs = [-0.05, 0.007]
+    asph_coeffs = [0., -0.4, 0.08]
     x = np.linspace(-1, 1, 101)
     y_sphere = x**2 / R / (1+np.sqrt(1-(1+k)*x**2/R**2))
     y_asphere = np.sum([asph_coeffs[_i] * x**(2*(_i+2)) for _i in range(len(asph_coeffs))], axis=0)
@@ -44,13 +44,13 @@ def _(plt, x, y_asphere, y_sphere):
 @app.cell
 def _():
     xlims = [-1, 1]
-    ylims = [-0.05, 0.05]
+    ylims = [-0.66667, 0.66667]
     return xlims, ylims
 
 
 @app.cell
 def _(plt, x, xlims, y_sphere, ylims):
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(6, 4))
     plt.plot(x, y_sphere, color="#4a8222")
     plt.xlim(*xlims)
     plt.ylim(*ylims)
@@ -73,7 +73,7 @@ def _(plt, x, xlims, y_sphere, ylims):
 
 @app.cell
 def _(plt, x, xlims, y_asphere, ylims):
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(6, 4))
     plt.plot(x, y_asphere, color="#23a2c6")
     plt.xlim(*xlims)
     plt.ylim(*ylims)
@@ -96,7 +96,7 @@ def _(plt, x, xlims, y_asphere, ylims):
 
 @app.cell
 def _(plt, x, xlims, y_asphere, y_sphere, ylims):
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(6, 4))
     plt.plot(x, y_sphere + y_asphere, "C1")
     plt.xlim(*xlims)
     plt.ylim(*ylims)
@@ -136,47 +136,6 @@ def _(plt, x, xlims, y_asphere, y_sphere):
         labelbottom=False, # Remove x-axis labels
         labelleft=False    # Remove y-axis labels
     )
-    # plt.grid()
-    plt.show()
-    return
-
-
-@app.cell
-def _(x, y_asphere, y_sphere):
-    (y_sphere + y_asphere)[::9]
-    x[::10]
-    return
-
-
-@app.cell
-def _(np, plt):
-    _x = np.linspace(-10, 10, 101)
-    _R = 15
-    _k = 0
-    _asph_coeffs = [0.0004, -0.000004]
-    _y = _x**2 / _R / (1+np.sqrt(1-(1+_k)*_x**2/_R**2)) + np.sum([_asph_coeffs[_i] * _x**(2*(_i+2)) for _i in range(len(_asph_coeffs))], axis=0)
-
-    _x_alt = _x[2::16]
-    _y_alt = _y[2::16]
-    plt.figure(figsize=(6, 4))
-    plt.plot(_x, _y, "-C1")
-    plt.scatter(x=_x_alt, y=_y_alt, color="C1")
-    for _x, _y in zip(_x_alt, _y_alt):
-        plt.plot()
-    plt.xlim(-10, 10)
-    plt.ylim(-1, 5)
-    plt.axhline(y=0, color='0.6', linestyle='-', linewidth=0.5)  # Horizontal line at y=0
-    plt.axvline(x=0, color='0.6', linestyle='-', linewidth=0.5)  # Vertical line at x=0
-    # plt.tick_params(
-    #     axis='both',       # Apply to both x and y axes
-    #     which='both',      # Major and minor ticks
-    #     bottom=False,      # Remove ticks on the bottom
-    #     top=False,         # Remove ticks on the top
-    #     left=False,        # Remove ticks on the left
-    #     right=False,       # Remove ticks on the right
-    #     labelbottom=False, # Remove x-axis labels
-    #     labelleft=False    # Remove y-axis labels
-    # )
     # plt.grid()
     plt.show()
     return
